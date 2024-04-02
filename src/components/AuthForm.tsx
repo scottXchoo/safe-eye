@@ -26,17 +26,24 @@ export default function AuthForm() {
     signInMessage = "Sign Up";
   }
 
-  const signUpMessage = <p>Email sent! Check your email to confirm sign up.</p>;
+  const signUpMessage = (
+    <p className="text-center text-white">
+      Email sent! Check your email to confirm sign up.
+    </p>
+  );
 
   return (
-    <form onSubmit={isNewUser ? handleSignUp : handleLogin}>
+    <form
+      onSubmit={isNewUser ? handleSignUp : handleLogin}
+      className="space-y-8"
+    >
       <input
         type="email"
         value={email}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setEmail(e.target.value)
         }
-        className=""
+        className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
         placeholder="Email"
       />
       <input
@@ -45,22 +52,35 @@ export default function AuthForm() {
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setPassword(e.target.value)
         }
-        className=""
+        className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
         placeholder="Password"
       />
-      <button type="submit">{signInMessage}</button>
-      <p>
+      <button
+        type="submit"
+        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        {signInMessage}
+      </button>
+      <p className="text-center text-white">
         {isNewUser ? (
           <>
             Already have an account?{" "}
-            <button type="button" onClick={() => setIsNewUser(false)}>
+            <button
+              type="button"
+              onClick={() => setIsNewUser(false)}
+              className="text-indigo-400 hover:text-indigo-600"
+            >
               Sign In
             </button>
           </>
         ) : (
           <>
             Don't have an account?{" "}
-            <button type="button" onClick={() => setIsNewUser(true)}>
+            <button
+              type="button"
+              onClick={() => setIsNewUser(true)}
+              className="text-indigo-400 hover:text-indigo-600"
+            >
               Sign Up
             </button>
           </>
