@@ -1,36 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## ⭐️ 프로젝트 소개
 
-## Getting Started
+[VDVT](https://scottxchoo.xyz/pr-vdvt/) 모델로 **영상의 폭력 사태 여부를 판단**해주는 웹사이트입니다.
 
-First, run the development server:
+*[VDVT](https://scottxchoo.xyz/pr-vdvt/)는 Vision Transformer의 Tubelet Encoder 부분을 MobileNetV3로 대체하여 성능을 높이고 학습 속도를 감소시킨 제가 직접 구현한 딥러닝 모델입니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 주요 기능
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### [1] 특정 영상의 폭력 사태 여부 확인
+#### [2] 특정 영상의 폭력 사태가 시작된 영상 내 시간 확인
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📊 아키텍처
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+<img width="820" alt="image" src="https://github.com/scottXchoo/safe-eye/assets/107841492/10ac047d-0de3-4056-98d4-8ee0277366ce">
 
-## Learn More
+## 🛠️ 기술 스택
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<img width="673" alt="image" src="https://github.com/scottXchoo/safe-eye/assets/107841492/2b81ed43-3954-48ab-b41b-675dce71bcf8">
