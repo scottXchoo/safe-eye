@@ -1,3 +1,5 @@
+import SignOutButton from "@/components/SignOutButton";
+
 export default function Photos() {
   return (
     <main className="min-h-screen bg-gray-800 text-white relative p-10">
@@ -8,7 +10,9 @@ export default function Photos() {
         </div>
         {/* PhotoGrid */}
       </div>
-      <div className="absolute top-4 right-4">{/* SignOutButton */}</div>
+      <div className="absolute top-4 right-4">
+        <SignOutButton />
+      </div>
     </main>
   );
 }
