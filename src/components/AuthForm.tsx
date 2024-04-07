@@ -2,6 +2,7 @@
 
 import { createClient } from "@/utils/supabase/client";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AuthForm() {
   const [isNewUser, setIsNewUser] = useState(false);
@@ -10,11 +11,22 @@ export default function AuthForm() {
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
 
+  const router = useRouter();
   const browserClient = createClient();
 
   async function handleLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // handleLogin logic
+    setIsSigningIn(true);
+    const { data, error } = await browserClient.auth.signInWithPassword({
+      email,
+      password,
+    });
+    console.log({ data, error });
+    if (!error) {
+      router.push("/photos");
+    } else {
+      setIsSigningIn(false);
+    }
   }
 
   async function handleSignUp(e: FormEvent<HTMLFormElement>) {
