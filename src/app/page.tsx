@@ -1,3 +1,5 @@
+import AuthForm from "@/components/AuthForm";
+
 export default function Home() {
   return (
     <main className="flex items-center justify-center bg-gray-900 min-h-screen">
@@ -8,7 +10,7 @@ export default function Home() {
         <p className="mb-6 text-lg text-center">
           Sign in to upload and check violence in your viedeos.
         </p>
-        {/* AuthForm */}
+        <AuthForm />
       </div>
     </main>
   );
