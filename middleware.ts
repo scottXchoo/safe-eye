@@ -1,8 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  const response = NextResponse.next();
+export async function middleware(req: NextRequest) {
+  const res = NextResponse.next();
 
   const supabaseServerClient = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -10,37 +10,37 @@ export async function middleware(request: NextRequest) {
     {
       cookies: {
         get(name) {
-          return request.cookies.get(name)?.value;
+          return req.cookies.get(name)?.value;
         },
         set(name, value, options) {
-          request.cookies.set({
+          req.cookies.set({
             name,
             value,
             ...options,
           });
-          const response = NextResponse.next({
+          const res = NextResponse.next({
             request: {
-              headers: request.headers,
+              headers: req.headers,
             },
           });
-          response.cookies.set({
+          res.cookies.set({
             name,
             value,
             ...options,
           });
         },
         remove(name, options) {
-          request.cookies.set({
+          req.cookies.set({
             name,
             value: "",
             ...options,
           });
-          const response = NextResponse.next({
+          const res = NextResponse.next({
             request: {
-              headers: request.headers,
+              headers: req.headers,
             },
           });
-          response.cookies.set({
+          res.cookies.set({
             name,
             value: "",
             ...options,
@@ -55,14 +55,14 @@ export async function middleware(request: NextRequest) {
   } = await supabaseServerClient.auth.getUser();
   console.log({ user });
 
-  if (user && request.nextUrl.pathname === "/") {
-    return NextResponse.redirect(new URL("/photos", request.url));
+  if (user && req.nextUrl.pathname === "/") {
+    return NextResponse.redirect(new URL("/photos", req.url));
   }
-  if (!user && request.nextUrl.pathname !== "/") {
-    return NextResponse.redirect(new URL("/", request.url));
+  if (!user && req.nextUrl.pathname !== "/") {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
-  return response;
+  return res;
 }
 
 export const config = {

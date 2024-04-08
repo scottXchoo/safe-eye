@@ -1,36 +1,19 @@
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
+import { createSupabaseServerClient } from "@/utils/supabase/server";
+
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const cookieStore = cookies();
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name) {
-          return cookieStore.get(name)?.value;
-        },
-        set(name, value, options) {
-          cookieStore.set({ name, value, ...options });
-        },
-        remove(name, options) {
-          cookieStore.set({ name, value: "", ...options });
-        },
-      },
-    }
-  );
-
+  const serverClient = createSupabaseServerClient();
   const {
     data: { session },
-  } = await supabase.auth.getSession();
+    // Sign In 하면, 세션이 생성된다. 세션이 있다는 것은 Sign In이 되었다는 것이다.
+  } = await serverClient.auth.getSession();
 
   if (session) {
-    await supabase.auth.signOut();
+    await serverClient.auth.signOut(); // coockies에 저장된 세션을 지운다.
+  } else {
+    console.log("No session found. Sign In first.");
   }
-
   return NextResponse.redirect(new URL("/", req.url), {
     status: 302, // Not 301. Temporary moved.
   });

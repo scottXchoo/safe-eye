@@ -1,6 +1,6 @@
 "use client";
 
-import { createClient } from "@/utils/supabase/client";
+import { createSupabaseBrowserClient } from "@/utils/supabase/client";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -12,7 +12,7 @@ export default function AuthForm() {
   const [isSigningUp, setIsSigningUp] = useState(false);
 
   const router = useRouter();
-  const browserClient = createClient();
+  const browserClient = createSupabaseBrowserClient();
 
   async function handleLogin(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
